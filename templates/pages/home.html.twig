@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Super Agence' %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Bienvenue dans la page d'accueil</h1>
+        <p>orem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        </p>
+    </div>
+    <div class="container">
+        <h2>les derniers produits</h2>
+        <div class="row flex">
+            {% for p in properties %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('property.show', { id: p.id, slug: p.titleSlug})}}">{{ p.title }}</a>
+                            </h5>
+                            <p class="card-text">
+                                {{ p.city }} ({{ p.codePostal }})
+                            </p>
+                            <div class="text-primary" style="font-weight: bold; font-size: 2rem">
+                                {{ p.price | number_format(0, '', ' ') }} $
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock body %}
