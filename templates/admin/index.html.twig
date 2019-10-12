@@ -3,9 +3,15 @@
 {% block title 'Super Agence' %}
 
 {% block body %}
-    <div class="container mt-4">
+    <div class="container col-md-8 mt-4">
 
         <h1>Gerer les produits</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
         <table class="table table-striped">
             <thead>
             <tr>
@@ -17,12 +23,23 @@
             {% for p in properties %}
                     <tr>
                         <td>{{ p.title }}</td>
-                        <td><a class="btn btn-secondary" href="{{ path('admin.property.edit', { id: p.id }) }}" >Editer</a></td>
+                        <td>
+                            <a class="btn btn-secondary" href="{{ path('admin.property.edit', { id: p.id }) }}" >Editer</a>
+                            <form method="post" onsubmit=" return confirm('Etes vous sur de suppression') " action="{{ path('admin.property.delete', {id: p.id}) }}" style="display: inline">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ p.id)}}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+
+                        </td>
                     </tr>
             {% endfor %}
             </tbody>
         </table>
 
+        <div class="text-right">
+            <a href="{{ path('admin.property.new') }}" class="btn btn-primary"> Nouveau</a>
+        </div>
     </div>
 
 {% endblock body %}
