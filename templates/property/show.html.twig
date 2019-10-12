@@ -4,18 +4,23 @@
 {% block title property.title %}
 
 {% block body %}
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-8">
 
+    <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">
+                    <h1>{{ property.title }}</h1>
+                    <h2> {{ property.bedrooms }} pieces {{ property.surface }} m</h2>
+                    <div class="text-primary" style="font-weight:bold; font-size: 4rem"> {{ property.price | number_format(0, '', ' ') }} $</div>
+                    <a href="#" class="btn btn-primary"> Contacter Nous</a>
+                </div>
+
+                </dev>
             </div>
-            <div class="col-md-4">
-                <h1>{{ property.title }}</h1>
-                <h2> {{ property.bedrooms }} pieces {{ property.surface }} m</h2>
-                <div class="text-primary" style="font-weight:bold; font-size: 4rem"> {{ property.price | number_format(0, '', ' ') }} $</div>
-                <a href="#" class="btn btn-primary"> Contacter Nous</a>
-            </div>
-        </div>
+    </div>
+    <div class="container">
             <p>
                 {{ property.description | nl2br }}
             </p>
@@ -44,7 +49,7 @@
 
                 </div>
                 <div class="col-md-4">
-                    <h2>Specifites</h2>
+                    <h2>Specifities </h2>
                 </div>
             </div>
     </div>

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Super Agence' %}
+
+{% block body %}
+    <div class="container mt-4">
+
+        <h1>Gerer les produits</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in properties %}
+                    <tr>
+                        <td>{{ p.title }}</td>
+                        <td><a class="btn btn-secondary" href="{{ path('admin.property.edit', { id: p.id }) }}" >Editer</a></td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock body %}
